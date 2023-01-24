@@ -74,6 +74,7 @@ type Crypto struct {
 	Picture         string
 	PaymentMethodID int
 	PaymentMethod   PaymentMethod `gorm:"references:ID"`
+	Payment         []Payment     `gorm:"foreignKey:CryptoID"`
 }
 
 type Bank struct {
@@ -83,6 +84,7 @@ type Bank struct {
 	Picture         string
 	PaymentMethodID int
 	PaymentMethod   PaymentMethod `gorm:"references:ID"`
+	Payment         []Payment     `gorm:"foreignKey:BankID"`
 }
 
 type PaymentMethod struct {
@@ -99,6 +101,10 @@ type Payment struct {
 	Customer        Customer `gorm:"references:ID"`
 	PaymentMethodID *uint
 	PaymentMethod   PaymentMethod `gorm:"references:ID"`
+	CryptoID        *uint
+	Crypto          Crypto `gorm:"references:ID"`
+	BankID          *uint
+	Bank            Bank `gorm:"references:ID"`
 	PlaceID         *uint
 	Place           Place `gorm:"references:ID"`
 	Time            time.Time

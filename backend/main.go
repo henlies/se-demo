@@ -13,18 +13,21 @@ func main() {
 	r := gin.Default()
 	r.Use(CORSMiddleware())
 
+	// เสริม
+	r.GET("/customers", controller.ListCustomers)
+
 	// SERVICE
 	r.GET("/services", controller.ListServices)
 	r.GET("/service/:id", controller.GetService)
-	r.GET("/services/user/:id", controller.ListServicesByUID)
+	r.GET("/services/customer/:id", controller.ListServicesByUID)
 	r.POST("/service", controller.CreateService)
 	r.PATCH("/services", controller.UpdateService)
 	r.DELETE("/services/:id", controller.DeleteService)
 
 	// PAYMENT
-	r.GET("/payment", controller.ListPayments)
+	r.GET("/payments", controller.ListPayments)
 	r.GET("/payment/:id", controller.GetPayment)
-	r.GET("/payment/user/:id", controller.ListPaymentByUID)
+	r.GET("/payment/customer/:id", controller.ListPaymentByUID)
 	r.POST("/payment", controller.CreatePayment)
 
 	r.Run()
