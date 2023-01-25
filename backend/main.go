@@ -15,6 +15,8 @@ func main() {
 
 	// เสริม
 	r.GET("/customers", controller.ListCustomers)
+	r.GET("/customer/:id", controller.GetCustomer)
+	r.POST("/login", controller.Login)
 
 	// SERVICE
 	r.GET("/services", controller.ListServices)

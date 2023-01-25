@@ -3,19 +3,61 @@ package entity
 import (
 	"time"
 
+	"golang.org/x/crypto/bcrypt"
+	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
-func SetupIntoDatabase(db *gorm.DB) {
+var db *gorm.DB
+
+func DB() *gorm.DB {
+	return db
+}
+
+func SetupDatabase() {
+	database, err := gorm.Open(sqlite.Open("se.db"), &gorm.Config{})
+	if err != nil {
+		panic("failed to connect database")
+	}
+
+	// Migrate the schema
+	database.AutoMigrate(
+		// FRIEND
+		&Customer{},
+		// SERVICE
+		&Food{},
+		&Drink{},
+		&Accessories{},
+		&Service{},
+		// PAYMENT
+		&Place{},
+		&Bank{},
+		&Crypto{},
+		&PaymentMethod{},
+		&Payment{},
+	)
+
+	db = database
 
 	// ===============     CUSTOMER     ===============
+	Password1, err := bcrypt.GenerateFromPassword([]byte("1"), 14)
+	Password2, err := bcrypt.GenerateFromPassword([]byte("2"), 14)
+
 	db.Model(&Customer{}).Create(&Customer{
 		Name:     "Sandee",
 		Username: "Sandee",
-		Password: "SD1234",
+		Password: string(Password1),
 		Age:      30,
 		Phone:    "0933486161",
 		Email:    "Sandee12@gmail.com",
+	})
+	db.Model(&Customer{}).Create(&Customer{
+		Name:     "San",
+		Username: "San",
+		Password: string(Password2),
+		Age:      20,
+		Phone:    "0933484161",
+		Email:    "San12@gmail.com",
 	})
 	var sandee Customer
 	db.Raw("SELECT * FROM customers WHERE email = ?", "Sandee12@gmail.com").Scan(&sandee)
