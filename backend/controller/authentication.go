@@ -19,6 +19,7 @@ type LoginPayload struct {
 type LoginResponse struct {
 	Token string `json:"token"`
 	ID    uint   `json:"id"`
+	Name  string `json:"name"`
 }
 
 // POST /login
@@ -63,6 +64,7 @@ func Login(c *gin.Context) {
 	tokenResponse := LoginResponse{
 		Token: signedToken,
 		ID:    customer.ID,
+		Name:  customer.Name,
 	}
 
 	c.JSON(http.StatusOK, gin.H{"data": tokenResponse})

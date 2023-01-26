@@ -17,7 +17,6 @@ func main() {
 	r.GET("/customers", controller.ListCustomers)
 	r.GET("/customer/:id", controller.GetCustomer)
 	r.POST("/login", controller.Login)
-
 	// SERVICE
 	r.GET("/services", controller.ListServices)
 	r.GET("/service/:id", controller.GetService)
@@ -25,6 +24,10 @@ func main() {
 	r.POST("/service", controller.CreateService)
 	r.PATCH("/services", controller.UpdateService)
 	r.DELETE("/services/:id", controller.DeleteService)
+
+	r.GET("/foods", controller.ListFoods)
+	r.GET("/drink", controller.ListDrinks)
+	r.GET("/accessories", controller.ListAccessories)
 
 	// PAYMENT
 	r.GET("/payments", controller.ListPayments)

@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home"
+import ServiceShow from "./components/Service/ServiceShow"
+import ServiceAdd from "./components/Service/ServiceAdd"
+import ServiceUpdate from "./components/Service/ServiceUpdate"
+import ServiceDelete from "./components/Service/ServiceDelete"
+import Login from "./components/Login";
 
-function App() {
+
+export default function App() {
+  const [token, setToken] = useState<String>("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setToken(token);
+    }
+  }, []);
+
+  if (!token) {
+    return <Login />;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/serviceshow" element={<ServiceShow />} />
+          <Route path="/serviceadd" element={<ServiceAdd />} />
+          <Route path="/serviceupdate/:id" element={<ServiceUpdate />} />
+          <Route path="/servicedelete" element={<ServiceDelete />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
-
-export default App;
