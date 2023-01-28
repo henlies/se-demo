@@ -26,7 +26,7 @@ func main() {
 	r.DELETE("/services/:id", controller.DeleteService)
 
 	r.GET("/foods", controller.ListFoods)
-	r.GET("/drink", controller.ListDrinks)
+	r.GET("/drinks", controller.ListDrinks)
 	r.GET("/accessories", controller.ListAccessories)
 
 	// PAYMENT
@@ -34,6 +34,11 @@ func main() {
 	r.GET("/payment/:id", controller.GetPayment)
 	r.GET("/payment/customer/:id", controller.ListPaymentByUID)
 	r.POST("/payment", controller.CreatePayment)
+
+	r.GET("/paymentmethods", controller.ListPaymentMethods)
+	r.GET("/methods/paymet/:id", controller.ListMethodsByPID)
+	r.GET("/method/:id", controller.GetMethod)
+	r.GET("/places", controller.ListPlaces)
 
 	r.Run()
 }

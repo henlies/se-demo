@@ -6,10 +6,8 @@ export interface PaymentsInterface {
     Customer: CustomersInterface;
     PaymentMethodID: number,
     PaymentMethod: PaymentMethodsInterface;
-    CryptoID: number,
-    Crypto: CryptosInterface
-    BankID: number,
-    Bank: BanksInterface
+    MethodID: number,
+    Method: MethodsInterface
     PlaceID: number,
     Place: PlacesInterface
     Time: Date | null,
@@ -21,19 +19,10 @@ export interface PaymentMethodsInterface {
     Name: string;
 }
 
-export interface CryptosInterface {
+export interface MethodsInterface {
     ID?: number,
     Name: string,
-    PublicKey: string,
-    Picture: string,
-    PaymentMethodID: number,
-    PaymentMethod: PaymentMethodsInterface;
-}
-
-export interface BanksInterface {
-    ID?: number,
-    Name: string,
-    Number: string,
+    Destination: string,
     Picture: string,
     PaymentMethodID: number,
     PaymentMethod: PaymentMethodsInterface;

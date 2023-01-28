@@ -74,9 +74,7 @@ function Navbar() {
   const menu = [
     { name: "Home", path: "/" },
     { name: "Service Show", path: "/serviceshow" },
-    { name: "Service Add", path: "/serviceadd" },
-    { name: "Service Update", path: "/serviceupdate" },
-    { name: "Service Delete", path: "/servicedelete" },
+    { name: "Payment Show", path: "/paymentshow" },
   ]
 
   const LogOut = () => {
