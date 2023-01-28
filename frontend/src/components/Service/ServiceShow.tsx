@@ -28,7 +28,10 @@ function ServiceShow() {
 
     const getServices = async () => {
         const apiUrl = `http://localhost:8080/services/customer/${id_cus}`;
-        const requestOptions = { method: "GET" };
+        const requestOptions = {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        };
 
         fetch(apiUrl, requestOptions)
             .then((response) => response.json())
