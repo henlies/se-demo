@@ -1,3 +1,5 @@
 # se-demo
-# this is Software Engineering Project
-# code by henlies
+Name => Pattharapon Kanwicha
+Project => Hotel System
+
+`Please mercy`
